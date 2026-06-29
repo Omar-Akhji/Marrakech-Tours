@@ -1,0 +1,110 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+
+export interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
+  bodyClass?: string | undefined;
+}
+
+const {
+  title = "Marrakech Travel Portal",
+  description = "Discover the beauty and culture of Marrakech. Explore destinations, tours, and more.",
+  image = "/favicon.svg",
+  bodyClass = "",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width"
+      name="viewport"
+    />
+    <link
+      href="/favicon.svg"
+      rel="icon"
+      type="image/svg+xml"
+    />
+    <link
+      href="/favicon.ico"
+      rel="icon"
+    />
+    <meta
+      content={Astro.generator}
+      name="generator"
+    />
+    <title>{title}</title>
+    <meta
+      content={title}
+      name="title"
+    />
+    <meta
+      content={description}
+      name="description"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta
+      content="website"
+      property="og:type"
+    />
+    <meta
+      content={Astro.url}
+      property="og:url"
+    />
+    <meta
+      content={title}
+      property="og:title"
+    />
+    <meta
+      content={description}
+      property="og:description"
+    />
+    <meta
+      content={new URL(image, Astro.url)}
+      property="og:image"
+    />
+
+    <!-- Twitter -->
+    <meta
+      content="summary_large_image"
+      property="twitter:card"
+    />
+    <meta
+      content={Astro.url}
+      property="twitter:url"
+    />
+    <meta
+      content={title}
+      property="twitter:title"
+    />
+    <meta
+      content={description}
+      property="twitter:description"
+    />
+    <meta
+      content={new URL(image, Astro.url)}
+      property="twitter:image"
+    />
+
+    <ClientRouter />
+  </head>
+  <body class:list={bodyClass}>
+    <slot />
+
+    <script src="../scripts/scroll-animations.ts"></script>
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+  }
+</style>

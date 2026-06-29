@@ -1,0 +1,45 @@
+---
+interface CardItem {
+  place: string;
+  title: string;
+  title2: string;
+  description: string;
+  image: string;
+}
+
+export interface Props {
+  data: CardItem[];
+}
+
+const { data } = Astro.props;
+---
+
+{
+  data.map((item, index) => (
+    <div
+      class="card absolute top-0 left-0 overflow-hidden shadow-[6px_6px_10px_2px_rgba(0,0,0,0.6)]"
+      id={`card${index}`}
+    >
+      <img
+        alt={item.title}
+        class="absolute inset-0 h-full w-full object-cover"
+        decoding="async"
+        loading="eager"
+        src={item.image}
+      />
+    </div>
+  ))
+}
+{
+  data.map((item, index) => (
+    <div
+      class="card-content absolute top-0 left-0 overflow-hidden pl-4 text-white/80"
+      id={`card-content-${index}`}
+    >
+      <div class="h-1.25 w-7.5 content-start rounded-full bg-white/80" />
+      <div class="content-place mt-1.5 text-[13px] font-medium">{item.place}</div>
+      <div class="content-title-1 font-[Oswald] text-xl font-semibold">{item.title}</div>
+      <div class="content-title-2 font-[Oswald] text-xl font-semibold">{item.title2}</div>
+    </div>
+  ))
+}

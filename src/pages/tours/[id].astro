@@ -1,0 +1,165 @@
+---
+import SubpageLayout from "../../layouts/SubpageLayout.astro";
+import { tours } from "../../data/toursData";
+
+export async function getStaticPaths() {
+  return tours.map((tour) => ({ params: { id: tour.id }, props: { tour } }));
+}
+
+const { tour } = Astro.props;
+---
+
+<SubpageLayout title={tour.title}>
+  <!-- Hero Banner -->
+  <section class="relative h-[55vh] min-h-87.5 w-full overflow-hidden">
+    <div class="absolute inset-0 z-0 h-full w-full overflow-hidden">
+      <img
+        alt={tour.title}
+        class="h-full w-full scale-120 object-cover"
+        data-animate="parallax"
+        src={tour.image}
+      />
+    </div>
+    <div
+      class="absolute inset-0 z-10 bg-linear-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent"
+    >
+    </div>
+    <div class="absolute bottom-0 left-0 z-20 w-full px-6 py-12 md:px-12">
+      <div class="max-w-7xl mx-auto">
+        <span
+          class="rounded-md border border-[#ecad29]/30 bg-[#ecad29]/10 px-3 py-1 text-xs font-semibold tracking-wider text-[#ecad29] uppercase"
+        >
+          {tour.difficulty}
+        </span>
+        <h1
+          class="mt-4 font-[Oswald] text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-wider text-white"
+          data-animate="fade-up"
+        >
+          {tour.title}
+        </h1>
+        <div
+          class="mt-4 flex flex-wrap items-center gap-6 text-sm text-white/80"
+          data-animate="fade-up"
+        >
+          <span>🕒 {tour.duration}</span>
+          <span>★ {tour.rating}</span>
+          <span class="text-[#ecad29] font-bold text-lg">From {tour.price}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Split Grid -->
+  <section class="max-w-7xl mx-auto px-6 md:px-12 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <!-- Left Column: Details & Itinerary -->
+      <div class="lg:col-span-2 space-y-12">
+        <!-- Overview -->
+        <div
+          class="space-y-4"
+          data-animate="fade-up"
+        >
+          <h2
+            class="font-[Oswald] text-2xl font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2"
+          >
+            Tour Overview
+          </h2>
+          <p class="font-[Inter] text-base leading-relaxed text-white/70">
+            {tour.desc}
+          </p>
+        </div>
+
+        <!-- Itinerary -->
+        <div
+          class="space-y-6"
+          data-animate="fade-up"
+        >
+          <h2
+            class="font-[Oswald] text-2xl font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2"
+          >
+            Detailed Itinerary
+          </h2>
+          <div
+            class="space-y-6 pt-4"
+            data-animate="stagger-cards"
+          >
+            {
+              tour.itinerary.map((item) => (
+                <div class="relative ml-3 border-l border-[#ecad29]/30 pb-2 pl-6 last:pb-0">
+                  <div class="absolute top-0.5 -left-1.5 h-3 w-3 rounded-full border-2 border-[#ecad29] bg-[#1a1a1a]" />
+                  <span class="block text-xs font-bold tracking-wider text-[#ecad29] uppercase">
+                    {item.day}
+                  </span>
+                  <h3 class="mt-1 font-[Outfit] text-lg font-bold text-white">{item.title}</h3>
+                  <p class="mt-2 font-[Inter] text-sm leading-relaxed text-white/60">{item.desc}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Inclusions & CTA -->
+      <div class="space-y-8 lg:sticky lg:top-24 h-fit">
+        <!-- Inclusions & Exclusions Card -->
+        <div
+          class="rounded-2xl border border-white/5 bg-white/5 p-6 md:p-8 space-y-6"
+          data-animate="fade-up"
+        >
+          <div>
+            <h3 class="font-[Oswald] text-lg font-bold uppercase tracking-widest text-white mb-4">
+              What's Included
+            </h3>
+            <ul class="space-y-3">
+              {
+                tour.inclusions.map((inclusion) => (
+                  <li class="flex items-start font-[Inter] text-xs leading-relaxed text-white/70">
+                    <span class="mr-2 font-bold text-green-400">✓</span>
+                    <span>{inclusion}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div class="border-t border-white/5 pt-6">
+            <h3
+              class="font-[Oswald] text-lg font-bold uppercase tracking-widest text-white/80 mb-4"
+            >
+              Not Included
+            </h3>
+            <ul class="space-y-3">
+              {
+                tour.exclusions.map((exclusion) => (
+                  <li class="flex items-start font-[Inter] text-xs leading-relaxed text-white/50">
+                    <span class="mr-2 font-bold text-red-400">✗</span>
+                    <span>{exclusion}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <!-- Book CTA Box -->
+        <div
+          class="rounded-2xl bg-linear-to-br from-[#ecad29]/10 to-[#ff7a00]/10 border border-[#ecad29]/20 p-6 text-center space-y-4"
+          data-animate="fade-up"
+        >
+          <h3 class="font-[Oswald] text-xl font-bold uppercase text-white">
+            Ready to book this tour?
+          </h3>
+          <p class="text-xs text-white/60 font-[Inter]">
+            Inquire today and our destination experts will personalize this itinerary for you.
+          </p>
+          <a
+            class="block w-full text-center rounded-lg bg-linear-to-r from-[#ecad29] to-[#ff7a00] px-6 py-3 text-sm font-semibold tracking-wider text-black uppercase shadow-lg shadow-[#ecad29]/10 hover:shadow-[#ecad29]/20 transition-all hover:scale-[1.02]"
+            href={`/contact?tour=${encodeURIComponent(tour.title)}`}
+          >
+            Inquire About This Tour
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</SubpageLayout>

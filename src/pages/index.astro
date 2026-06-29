@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import SliderDetails from "../components/SliderDetails.astro";
+import SliderCards from "../components/SliderCards.astro";
+import SliderPagination from "../components/SliderPagination.astro";
+import { data } from "../data/sliderData";
+---
+
+<Layout>
+  <header
+    class="fixed top-0 right-0 left-0 z-50 flex items-center justify-end px-9 py-3 font-medium"
+  >
+    <Navbar />
+  </header>
+
+  <!-- Static/Dynamic Card Stack -->
+  <div id="demo">
+    <SliderCards data={data} />
+
+    <SliderDetails
+      description={data[0]?.description ?? ""}
+      id="details-even"
+      place={data[0]?.place ?? ""}
+      title={data[0]?.title ?? ""}
+      title2={data[0]?.title2 ?? ""}
+    />
+
+    <SliderDetails
+      description={data[0]?.description ?? ""}
+      id="details-odd"
+      place={data[0]?.place ?? ""}
+      title={data[0]?.title ?? ""}
+      title2={data[0]?.title2 ?? ""}
+    />
+
+    <SliderPagination data={data} />
+  </div>
+
+  <div class="cover absolute top-0 left-0 z-100 h-screen w-screen bg-white"></div>
+</Layout>
+
+<script src="../scripts/slider.ts"></script>
+
+<style is:global>
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@500&family=Outfit:wght@400;500;600;700&display=swap");
+
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    color: #ffffffdd;
+    position: relative;
+    overflow: hidden;
+    font-family: "Inter", sans-serif;
+  }
+</style>
