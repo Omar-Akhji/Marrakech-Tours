@@ -1,49 +1,46 @@
-# Astro Starter Kit: Basics
+# Travel Marrakech
 
-```sh
-bun create astro@latest -- --template basics
-```
+A travel website for Marrakech tours and destinations, built with Astro, Tailwind CSS, and Vue.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tech Stack
 
-## 🚀 Project Structure
+- [Astro](https://astro.build/) - Static site generator
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [Vue](https://vuejs.org/) - Interactive components
+- [GSAP](https://gsap.com/) - Animations
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📁 Project Structure
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── src/
+│   ├── assets/
+│   ├── components/       # Navbar, Footer, Sliders, etc.
+│   ├── data/             # Site content and configuration
+│   ├── layouts/          # Page layouts
+│   ├── pages/            # Route pages (index, tours, blog, contact, destinations)
+│   ├── scripts/          # Client-side scripts
+│   └── styles/           # Global styles
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to
-[our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 📄 Pages
+
+- **Home** - Hero, featured tours, destinations, testimonials
+- **Tours** - Tour listings with detail pages
+- **Destinations** - Destination listings
+- **Blog** - Blog posts with individual post pages
+- **Contact** - Contact form
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
-
 | Command               | Action                                           |
 | :-------------------- | :----------------------------------------------- |
-| `bun install`         | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our
-[Discord server](https://astro.build/chat).
-# Marrakech-Tours
+| `bun install`         | Install dependencies                             |
+| `bun dev`             | Start dev server at `localhost:4321`             |
+| `bun build`           | Build for production to `./dist/`                |
+| `bun preview`         | Preview build locally                            |
+| `bun format`          | Format code with Prettier                        |
+| `bun lint`            | Lint with ESLint                                 |
+| `bun type-check`      | Run Astro type checking                          |
