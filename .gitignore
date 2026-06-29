@@ -39,3 +39,5 @@ Thumbs.db
 /task.md
 /walkthrough.md
 /implementation_plan.md
+.agents/
+/AGENTS.md
