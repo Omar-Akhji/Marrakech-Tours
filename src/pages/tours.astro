@@ -1,6 +1,7 @@
 ---
 import SubpageLayout from "../layouts/SubpageLayout.astro";
 import { tours } from "../data/toursData";
+import { Star } from "lucide-astro";
 ---
 
 <SubpageLayout title="Curated Tours">
@@ -55,7 +56,10 @@ import { tours } from "../data/toursData";
                 <span class="mr-2 rounded-md border border-[#ecad29]/20 bg-[#ecad29]/10 px-2.5 py-1 text-xs font-semibold tracking-wider text-[#ecad29] uppercase">
                   {tour.difficulty}
                 </span>
-                <span class="text-xs text-white/80">★ {tour.rating}</span>
+                <span class="inline-flex items-center gap-1 text-xs text-white/80">
+                  <Star class="h-3.5 w-3.5 fill-[#ecad29] text-[#ecad29]" />
+                  {tour.rating}
+                </span>
               </div>
             </div>
 

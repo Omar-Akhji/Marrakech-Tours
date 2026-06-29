@@ -1,6 +1,7 @@
 ---
 import SubpageLayout from "../../layouts/SubpageLayout.astro";
 import { tours } from "../../data/toursData";
+import { Clock, Star, Check, X } from "lucide-astro";
 
 export async function getStaticPaths() {
   return tours.map((tour) => ({ params: { id: tour.id }, props: { tour } }));
@@ -38,11 +39,17 @@ const { tour } = Astro.props;
           {tour.title}
         </h1>
         <div
-          class="mt-4 flex flex-wrap items-center gap-6 text-sm text-white/80"
+          class="mt-6 flex flex-wrap items-center gap-6 text-sm text-white/80"
           data-animate="fade-up"
         >
-          <span>🕒 {tour.duration}</span>
-          <span>★ {tour.rating}</span>
+          <span class="inline-flex items-center gap-1.5">
+            <Clock class="h-4 w-4 text-[#ecad29]" />
+            {tour.duration}
+          </span>
+          <span class="inline-flex items-center gap-1.5">
+            <Star class="h-4 w-4 fill-[#ecad29] text-[#ecad29]" />
+            {tour.rating}
+          </span>
           <span class="text-[#ecad29] font-bold text-lg">From {tour.price}</span>
         </div>
       </div>
@@ -114,7 +121,7 @@ const { tour } = Astro.props;
               {
                 tour.inclusions.map((inclusion) => (
                   <li class="flex items-start font-[Inter] text-xs leading-relaxed text-white/70">
-                    <span class="mr-2 font-bold text-green-400">✓</span>
+                    <Check class="mt-0.5 mr-2 h-4 w-4 shrink-0 text-green-400" />
                     <span>{inclusion}</span>
                   </li>
                 ))
@@ -132,7 +139,7 @@ const { tour } = Astro.props;
               {
                 tour.exclusions.map((exclusion) => (
                   <li class="flex items-start font-[Inter] text-xs leading-relaxed text-white/50">
-                    <span class="mr-2 font-bold text-red-400">✗</span>
+                    <X class="mt-0.5 mr-2 h-4 w-4 shrink-0 text-red-400" />
                     <span>{exclusion}</span>
                   </li>
                 ))
