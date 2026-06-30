@@ -44,7 +44,7 @@ const destinations = [
   <!-- Hero Section -->
   <section class="relative py-20 px-6 text-center max-w-5xl mx-auto">
     <h1
-      class="text-5xl md:text-6xl font-[Oswald] font-bold uppercase tracking-wider text-transparent bg-clip-text bg-linear-to-r from-[#ecad29] to-[#ff7a00]"
+      class="text-5xl md:text-6xl font-[Oswald] font-bold uppercase tracking-wider text-transparent bg-clip-text bg-linear-to-r from-[#ecad29] to-[#ff7a00] text-shadow-black/10 text-shadow-sm"
       data-animate="fade-up"
     >
       Explore Morocco
@@ -66,7 +66,7 @@ const destinations = [
     >
       {
         destinations.map((destination, index) => (
-          <div
+          <article
             class:list={[
               `group relative flex min-h-112.5 flex-col justify-end overflow-hidden rounded-2xl border border-white/5 bg-white/5 p-6 transition-all duration-500 hover:border-[#ecad29]/30 hover:shadow-xl hover:shadow-[#ecad29]/5 md:p-8`,
               { "md:col-span-2": index === 0 || index === 4 },
@@ -90,7 +90,7 @@ const destinations = [
               <span class="mb-2 block text-xs font-semibold tracking-widest text-[#ecad29] uppercase">
                 {destination.region}
               </span>
-              <h3 class="mb-3 font-[Outfit] text-3xl font-bold text-white">{destination.title}</h3>
+              <h3 class="mb-3 font-[Outfit] text-3xl font-bold text-white text-shadow-black/8 text-shadow-xs">{destination.title}</h3>
               <p class="mb-6 max-w-2xl font-[Inter] text-sm leading-relaxed text-white/70">
                 {destination.desc}
               </p>
@@ -103,7 +103,7 @@ const destinations = [
                 ))}
               </div>
             </div>
-          </div>
+          </article>
         ))
       }
     </div>

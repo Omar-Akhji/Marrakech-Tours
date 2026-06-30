@@ -8,7 +8,7 @@ import { Star } from "lucide-astro";
   <!-- Hero Section -->
   <section class="relative py-20 px-6 text-center max-w-5xl mx-auto">
     <h1
-      class="text-5xl md:text-6xl font-[Oswald] font-bold uppercase tracking-wider text-transparent bg-clip-text bg-linear-to-r from-[#ecad29] to-[#ff7a00]"
+      class="text-5xl md:text-6xl font-[Oswald] font-bold uppercase tracking-wider text-transparent bg-clip-text bg-linear-to-r from-[#ecad29] to-[#ff7a00] text-shadow-black/10 text-shadow-sm"
       data-animate="fade-up"
     >
       Boutique Marrakech Tours
@@ -29,7 +29,7 @@ import { Star } from "lucide-astro";
     >
       {
         tours.map((tour) => (
-          <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/5 bg-white/5 shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-[#ecad29]/30">
+          <article class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/5 bg-white/5 shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-[#ecad29]/30">
             {/* Image Header */}
             <div class="relative h-64 overflow-hidden">
               <div class="h-full w-full overflow-hidden transition-transform duration-500 group-hover:scale-105">
@@ -68,12 +68,12 @@ import { Star } from "lucide-astro";
               <div>
                 <div class="mb-3 flex flex-wrap gap-2">
                   {tour.tags.map((tag) => (
-                    <span class="rounded-sm bg-white/5 px-2 py-0.5 text-[10px] tracking-widest text-white/40 uppercase">
+                    <span class="rounded-xs bg-white/5 px-2 py-0.5 text-[10px] tracking-widest text-white/40 uppercase">
                       {tag}
                     </span>
                   ))}
                 </div>
-                <h3 class="mb-3 font-[Outfit] text-2xl font-bold text-white transition-colors group-hover:text-[#ecad29]">
+                <h3 class="mb-3 font-[Outfit] text-2xl font-bold text-white transition-colors group-hover:text-[#ecad29] text-shadow-black/8 text-shadow-xs">
                   <a
                     class="decoration-[#ecad29] decoration-2 underline-offset-4 hover:underline"
                     href={`/tours/${tour.id}`}
@@ -100,7 +100,7 @@ import { Star } from "lucide-astro";
                 </a>
               </div>
             </div>
-          </div>
+          </article>
         ))
       }
     </div>
