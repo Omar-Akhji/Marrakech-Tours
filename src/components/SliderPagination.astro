@@ -1,11 +1,5 @@
 ---
-interface CardItem {
-  place: string;
-  title: string;
-  title2: string;
-  description: string;
-  image: string;
-}
+import type { CardItem } from "../data/sliderData";
 
 export interface Props {
   data: CardItem[];
@@ -18,9 +12,9 @@ const { data } = Astro.props;
   class="pagination absolute top-0 left-0 inline-flex items-center gap-4"
   id="pagination"
 >
-  <div class="progress-sub-container z-60 flex h-12.5 w-24 sm:w-48 md:w-80 lg:w-100 items-center">
+  <div class="progress-sub-container z-60 flex h-12.5 w-24 items-center sm:w-48 md:w-80 lg:w-100">
     <div class="progress-sub-background h-0.75 w-full bg-white/20">
-      <div class="progress-sub-foreground h-0.75 bg-[#ecad29]"></div>
+      <div class="progress-sub-foreground h-0.75 bg-brand-gold"></div>
     </div>
   </div>
   <div

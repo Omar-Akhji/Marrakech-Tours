@@ -1,142 +1,52 @@
 ---
 /* eslint-disable astro/no-set-html-directive */
 import SubpageLayout from "../../layouts/SubpageLayout.astro";
+import { posts } from "../../data/blogData";
 
 export function getStaticPaths() {
-  return [
-    {
-      params: { slug: "souk-survival-tips" },
-      props: {
-        title: "10 Souk Survival Tips for First-Time Marrakech Travelers",
-        date: "June 25, 2026",
-        author: "Omar Bennani",
-        readTime: "5 min read",
-        category: "Guides",
-        image: "https://assets.codepen.io/3685267/timed-cards-3.jpg",
-        content: `
-          <p class="lead">Marrakech's historic souks are a dream for shoppers, but they can be overwhelming. Learn how to navigate the narrow alleys, haggle like a local, and identify real spices.</p>
-          
-          <h2>1. Know Your Way, or Accept the Maze</h2>
-          <p>The Medina is designed like a labyrinth. Getting lost isn't a mistake; it's part of the itinerary. Download offline maps like Google Maps or Maps.me beforehand, but don't hesitate to enjoy the random alleys you find.</p>
-          
-          <h2>2. The Art of Haggling (Derb Negotiation)</h2>
-          <p>Bargaining is a social custom. Start by offering 40-50% of the vendor's initial price, then negotiate slowly upwards. Always smile, keep it light, and be ready to walk away if the price doesn't suit you.</p>
-          
-          <h2>3. Stay Polite but Assertive</h2>
-          <p>You will be invited into shops constantly. A polite "La, Shukran" (No, thank you) with a smile and a hand over your heart is respected and will keep vendors from following you.</p>
-
-          <h2>4. Bring Cash (Dirhams)</h2>
-          <p>Credit cards are rarely accepted inside the small souk stalls. Carry small denomination banknotes (10, 20, 50 Dirhams) for easy transactions and tips.</p>
-        `,
-      },
-    },
-    {
-      params: { slug: "sahara-desert-camping" },
-      props: {
-        title: "Sleeping in the Sahara: What to Expect in a Desert Camp",
-        date: "June 18, 2026",
-        author: "Yasmine Mansouri",
-        readTime: "7 min read",
-        category: "Adventure",
-        image: "https://assets.codepen.io/3685267/timed-cards-6.jpg",
-        content: `
-          <p class="lead">A trek into the dunes of Erg Chebbi is an essential Moroccan experience. Here is everything you need to know about luxury camps, desert weather, camel riding, and starry nights.</p>
-          
-          <h2>1. Erg Chebbi vs Erg Chigaga</h2>
-          <p>Erg Chebbi (near Merzouga) features towering, easily accessible orange dunes with excellent camp facilities. Erg Chigaga is more remote and wild, requiring a 4x4 ride to reach deep desert isolation.</p>
-          
-          <h2>2. The Desert Camp Setup</h2>
-          <p>Modern luxury camps feature private bathrooms, running hot water, and king-size beds inside heavy canvas tents. Traditional camps offer simpler shared setups, offering a rustic experience under the stars.</p>
-          
-          <h2>3. Temperatures Fluctuations</h2>
-          <p>The desert gets surprisingly cold at night. Even in hot summer months, temperatures drop rapidly once the sun goes down. Pack warm layers, socks, and a fleece jacket for campfire storytelling.</p>
-        `,
-      },
-    },
-    {
-      params: { slug: "chefchaouen-photography-guide" },
-      props: {
-        title: "Exploring the Blue Pearl: A Chefchaouen Photography Guide",
-        date: "June 12, 2026",
-        author: "Karim Alaoui",
-        readTime: "4 min read",
-        category: "Photography",
-        image: "https://assets.codepen.io/3685267/timed-cards-2.jpg",
-        content: `
-          <p class="lead">Chefchaouen is a photographer's paradise. We share the exact coordinates of the most iconic blue staircases, best sunrise views, and tips for photographing locals respectfully.</p>
-          
-          <h2>1. Catch the Golden Hour</h2>
-          <p>The best lighting inside the blue alleys occurs in the early morning (7:00 AM - 9:00 AM) before the sun gets too harsh. The alleys are also completely empty at this hour, allowing clean landscape shots.</p>
-          
-          <h2>2. Respecting Locals</h2>
-          <p>Always ask permission before taking photos of local shopkeepers or children. A simple "S'il vous plaît?" or "Moulana?" with a camera gesture goes a long way. Many will happily agree or politely decline.</p>
-          
-          <h2>3. Iconic Blue Alleys</h2>
-          <p>While the whole Medina is blue, Calle Sidi Buchuka and El Asri are famous for their steps lined with colored flower pots. Wander off the main shopping streets to discover hidden arches.</p>
-        `,
-      },
-    },
-    {
-      params: { slug: "moroccan-mint-tea-etiquette" },
-      props: {
-        title: "Moroccan Mint Tea Etiquette: More Than Just a Drink",
-        date: "June 05, 2026",
-        author: "Fatima Zahra",
-        readTime: "3 min read",
-        category: "Culture",
-        image: "https://assets.codepen.io/3685267/timed-cards-1.jpg",
-        content: `
-          <p class="lead">Known as 'Berber Whiskey', Moroccan mint tea is a symbol of hospitality. Discover the history behind the brew, the pouring technique, and how to accept tea gracefully.</p>
-          
-          <h2>1. The Sign of Hospitality</h2>
-          <p>If you enter a shop, home, or riad, you will be offered hot tea. Refusing it is considered impolite. Always accept at least one glass to honor your host's hospitality.</p>
-          
-          <h2>2. The High Pour</h2>
-          <p>Tea is poured from a height of up to a meter. This is not just for show; the high pour aerates the hot tea, creating a beautiful foam (regga) at the top of the glass, and cools it down to drinking temperature.</p>
-          
-          <h2>3. Sweetness & Mint</h2>
-          <p>Moroccan tea is traditionally brewed with green gunpowder tea leaves, large chunks of sugar, and fresh spearmint leaves. It is served hot and sweet, ideal for hydration under the sun.</p>
-        `,
-      },
-    },
-  ];
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
-const { title, date, author, readTime, category, image, content } = Astro.props;
-
-const allPosts = [
-  { slug: "souk-survival-tips", title: "10 Souk Survival Tips for First-Time Marrakech Travelers", category: "Guides", image: "https://assets.codepen.io/3685267/timed-cards-3.jpg" },
-  { slug: "sahara-desert-camping", title: "Sleeping in the Sahara: What to Expect in a Desert Camp", category: "Adventure", image: "https://assets.codepen.io/3685267/timed-cards-6.jpg" },
-  { slug: "chefchaouen-photography-guide", title: "Exploring the Blue Pearl: A Chefchaouen Photography Guide", category: "Photography", image: "https://assets.codepen.io/3685267/timed-cards-2.jpg" },
-  { slug: "moroccan-mint-tea-etiquette", title: "Moroccan Mint Tea Etiquette: More Than Just a Drink", category: "Culture", image: "https://assets.codepen.io/3685267/timed-cards-1.jpg" },
-];
-
-const relatedPosts = allPosts.filter((p) => p.slug !== Astro.params.slug).slice(0, 2);
+const { post } = Astro.props;
+const relatedPosts = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
 ---
 
-<SubpageLayout title={title}>
+<SubpageLayout title={post.title}>
   <!-- Hero Image -->
   <section class="relative h-[55vh] min-h-87.5 overflow-hidden">
     <div class="absolute inset-0">
       <img
-        alt={title}
-        class="h-full w-full object-cover scale-105"
+        alt={post.title}
+        class="h-full w-full scale-105 object-cover"
         data-animate="parallax"
-        src={image}
+        src={post.image}
       />
     </div>
-    <div class="absolute inset-0 bg-linear-to-b from-[#1a1a1a]/40 via-[#1a1a1a]/20 to-[#1a1a1a]"></div>
-    <div class="absolute inset-0 bg-linear-to-r from-[#1a1a1a]/60 to-transparent"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-b from-surface-dark/40 via-surface-dark/20 to-surface-dark"
+    >
+    </div>
+    <div class="absolute inset-0 bg-linear-to-r from-surface-dark/60 to-transparent"></div>
 
     <!-- Floating Back Button -->
-    <div class="absolute top-0 left-0 right-0 px-6 md:px-12">
-      <div class="max-w-4xl mx-auto">
+    <div class="absolute top-0 right-0 left-0 px-6 md:px-12">
+      <div class="mx-auto max-w-4xl">
         <a
-          class="mt-14 flex items-center gap-2 w-fit rounded-full border border-white/10 bg-[#1a1a1a]/60 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white/80 backdrop-blur-md transition-all hover:border-[#ecad29]/40 hover:text-[#ecad29]"
+          class="mt-14 flex w-fit items-center gap-2 rounded-full border border-border-muted bg-surface-dark/60 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white/80 backdrop-blur-md transition-all hover:border-brand-gold/40 hover:text-brand-gold"
           href="/blog"
         >
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          <svg
+            class="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            ></path>
           </svg>
           All Posts
         </a>
@@ -144,40 +54,60 @@ const relatedPosts = allPosts.filter((p) => p.slug !== Astro.params.slug).slice(
     </div>
 
     <!-- Hero Content Overlay -->
-    <div class="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-10">
-      <div class="max-w-4xl mx-auto">
-        <span class="inline-block rounded-xs bg-[#ecad29] px-3 py-1 text-[10px] font-bold tracking-widest text-black uppercase shadow-lg">
-          {category}
+    <div class="absolute bottom-0 right-0 left-0 px-6 pb-10 md:px-12">
+      <div class="mx-auto max-w-4xl">
+        <span
+          class="inline-block rounded-xs bg-brand-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-black shadow-lg"
+        >
+          {post.category}
         </span>
         <h1
-          class="mt-4 text-4xl md:text-6xl font-[Oswald] font-bold text-white uppercase tracking-wide leading-[0.95] text-shadow-black/10 text-shadow-sm"
+          class="mt-4 font-heading text-4xl font-bold uppercase leading-[0.95] tracking-wide text-white text-shadow-black/10 text-shadow-sm md:text-6xl"
           data-animate="fade-up"
         >
-          {title}
+          {post.title}
         </h1>
       </div>
     </div>
   </section>
 
   <!-- Article Meta Bar -->
-  <section class="max-w-4xl mx-auto px-6 md:px-12 -mt-1 relative z-10">
+  <section class="relative z-10 mx-auto -mt-1 max-w-4xl px-6 md:px-12">
     <div
-      class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 py-5"
+      class="flex flex-wrap items-center justify-between gap-4 border-b border-border-muted py-5"
       data-animate="fade-up"
     >
       <div class="flex items-center gap-3">
-        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#ecad29]/15 text-sm font-bold text-[#ecad29] font-[Oswald]">
-          {author.split(" ").map((n) => n[0]).join("")}
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-gold/15 font-heading text-sm font-bold text-brand-gold"
+        >
+          {
+            post.author
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+          }
         </div>
         <div>
-          <p class="text-sm font-semibold text-white font-[Outfit]">{author}</p>
-          <p class="text-xs text-white/40">{date}</p>
+          <p class="font-display text-sm font-semibold text-white">{post.author}</p>
+          <p class="text-xs text-text-faint">{post.date}</p>
         </div>
       </div>
-      <div class="flex items-center gap-4 text-xs text-white/50">
+      <div class="flex items-center gap-4 text-xs text-text-faint">
         <span class="flex items-center gap-1.5">
-          <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          {readTime}
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            ></path></svg
+          >
+          {post.readTime}
         </span>
         <span class="h-1 w-1 rounded-full bg-white/20"></span>
         <span>Article</span>
@@ -187,52 +117,71 @@ const relatedPosts = allPosts.filter((p) => p.slug !== Astro.params.slug).slice(
 
   <!-- Article Body -->
   <article
-    class="max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-16"
+    class="mx-auto max-w-4xl px-6 py-12 md:px-12 md:py-16"
     data-animate="fade-up"
   >
-    <div class="blog-content" set:html={content} />
+    <div
+      class="blog-content"
+      set:html={post.content}
+    />
   </article>
 
   <!-- Divider -->
-  <div class="max-w-4xl mx-auto px-6 md:px-12">
+  <div class="mx-auto max-w-4xl px-6 md:px-12">
     <div class="flex items-center gap-4">
-      <div class="h-px flex-1 bg-white/10"></div>
-      <div class="h-2 w-2 rotate-45 border border-[#ecad29]/40 bg-[#ecad29]/20"></div>
-      <div class="h-px flex-1 bg-white/10"></div>
+      <div class="h-px flex-1 bg-border-muted"></div>
+      <div class="h-2 w-2 rotate-45 border border-brand-gold/40 bg-brand-gold/20"></div>
+      <div class="h-px flex-1 bg-border-muted"></div>
     </div>
   </div>
 
   <!-- Related Posts -->
-  <section class="max-w-4xl mx-auto px-6 md:px-12 py-16">
-    <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-[#ecad29] mb-8 font-[Oswald]">Continue Reading</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {relatedPosts.map((post) => (
-        <a
-          href={`/blog/${post.slug}`}
-          class="group relative block overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] transition-all duration-300 hover:border-[#ecad29]/20 hover:bg-white/[0.06]"
-        >
-          <div class="relative h-48 overflow-hidden">
-            <img
-              alt={post.title}
-              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              src={post.image}
-            />
-            <div class="absolute inset-0 bg-linear-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent"></div>
-            <span class="absolute top-3 left-3 rounded-xs bg-[#ecad29] px-2 py-0.5 text-[9px] font-bold tracking-widest text-black uppercase">
-              {post.category}
-            </span>
-          </div>
-          <div class="p-5">
-            <h3 class="font-[Outfit] text-lg font-bold text-white leading-snug transition-colors group-hover:text-[#ecad29] text-shadow-black/8 text-shadow-xs">
-              {post.title}
-            </h3>
-            <span class="mt-3 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#ecad29]">
-              Read Post
-              <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-            </span>
-          </div>
-        </a>
-      ))}
+  <section class="mx-auto max-w-4xl px-6 py-16 md:px-12">
+    <h2 class="mb-8 font-heading text-xs font-bold uppercase tracking-[0.2em] text-brand-gold">
+      Continue Reading
+    </h2>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        relatedPosts.map((relPost) => (
+          <a
+            class="group relative block overflow-hidden rounded-xl border border-border-subtle bg-white/3 transition-all duration-300 hover:border-brand-gold/20 hover:bg-surface-card-hover"
+            href={`/blog/${relPost.slug}`}
+          >
+            <div class="relative h-48 overflow-hidden">
+              <img
+                alt={relPost.title}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                src={relPost.image}
+              />
+              <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/40 to-transparent" />
+              <span class="absolute top-3 left-3 rounded-xs bg-brand-gold px-2 py-0.5 text-[9px] font-bold tracking-widest text-black uppercase">
+                {relPost.category}
+              </span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display text-lg leading-snug font-bold text-white transition-colors text-shadow-black/8 text-shadow-xs group-hover:text-brand-gold">
+                {relPost.title}
+              </h3>
+              <span class="mt-3 inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-brand-gold uppercase">
+                Read Post
+                <svg
+                  class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </section>
 </SubpageLayout>

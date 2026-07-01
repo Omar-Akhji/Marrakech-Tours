@@ -1,4 +1,6 @@
 ---
+import { navLinks } from "../data/navigation";
+
 export interface Props {
   currentPath?: string;
 }
@@ -9,78 +11,34 @@ const currentPath = Astro.props.currentPath ?? pathname.replace(/\/$/, "");
 
 <nav
   aria-label="Primary Navigation"
-  class="relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-white/10 bg-white/5 p-2 shadow-sm backdrop-blur-md"
+  class="relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-border-muted bg-surface-card p-2 shadow-sm backdrop-blur-md"
 >
   <!-- Sliding Indicator -->
   <div
-    class="nav-indicator absolute inset-y-2 left-0 z-0 rounded-full bg-linear-to-br from-[#ecad29] to-[#ff7a00] opacity-0 shadow-lg shadow-[#ecad29]/20"
+    class="nav-indicator absolute inset-y-2 left-0 z-0 rounded-full bg-linear-to-br from-brand-gold to-brand-orange opacity-0 shadow-lg shadow-brand-gold/20"
     style="pointer-events: none;"
   >
   </div>
   <ul class="nav-links m-0 inline-flex list-none items-center gap-3 p-0">
-    <li>
-      <a
-        aria-current={currentPath === "" ? "page" : undefined}
-        class:list={[
-          "nav-item relative z-10 block rounded-full px-6 py-2.5 text-sm font-[Outfit] font-semibold uppercase no-underline transition-colors duration-200",
-          { "text-black": currentPath === "", "text-white/60": currentPath !== "" },
-        ]}
-        href="/"
-      >
-        Home
-      </a>
-    </li>
-    <li>
-      <a
-        aria-current={currentPath === "/tours" ? "page" : undefined}
-        class:list={[
-          "nav-item relative z-10 block rounded-full px-6 py-2.5 text-sm font-[Outfit] font-semibold uppercase no-underline transition-colors duration-200",
-          { "text-black": currentPath === "/tours", "text-white/60": currentPath !== "/tours" },
-        ]}
-        href="/tours"
-      >
-        Tours
-      </a>
-    </li>
-    <li>
-      <a
-        aria-current={currentPath === "/destinations" ? "page" : undefined}
-        class:list={[
-          "nav-item relative z-10 block rounded-full px-6 py-2.5 text-sm font-[Outfit] font-semibold uppercase no-underline transition-colors duration-200",
-          {
-            "text-black": currentPath === "/destinations",
-            "text-white/60": currentPath !== "/destinations",
-          },
-        ]}
-        href="/destinations"
-      >
-        Destinations
-      </a>
-    </li>
-    <li>
-      <a
-        aria-current={currentPath === "/blog" ? "page" : undefined}
-        class:list={[
-          "nav-item relative z-10 block rounded-full px-6 py-2.5 text-sm font-[Outfit] font-semibold uppercase no-underline transition-colors duration-200",
-          { "text-black": currentPath === "/blog", "text-white/60": currentPath !== "/blog" },
-        ]}
-        href="/blog"
-      >
-        Blog
-      </a>
-    </li>
-    <li>
-      <a
-        aria-current={currentPath === "/contact" ? "page" : undefined}
-        class:list={[
-          "nav-item relative z-10 block rounded-full px-6 py-2.5 text-sm font-[Outfit] font-semibold uppercase no-underline transition-colors duration-200",
-          { "text-black": currentPath === "/contact", "text-white/60": currentPath !== "/contact" },
-        ]}
-        href="/contact"
-      >
-        Contact
-      </a>
-    </li>
+    {
+      navLinks.map((link) => {
+        const isActive = currentPath === (link.href === "/" ? "" : link.href);
+        return (
+          <li>
+            <a
+              aria-current={isActive ? "page" : undefined}
+              class:list={[
+                "nav-item relative z-10 block rounded-full px-6 py-2.5 text-sm font-display font-semibold uppercase no-underline transition-colors duration-200",
+                { "text-black": isActive, "text-text-muted": !isActive },
+              ]}
+              href={link.href}
+            >
+              {link.label}
+            </a>
+          </li>
+        );
+      })
+    }
   </ul>
 </nav>
 
@@ -90,12 +48,6 @@ const currentPath = Astro.props.currentPath ?? pathname.replace(/\/$/, "");
   nav {
     max-width: 90vw;
     overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-  }
-
-  nav::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
   }
 
   .nav-links {

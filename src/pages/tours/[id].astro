@@ -22,18 +22,18 @@ const { tour } = Astro.props;
       />
     </div>
     <div
-      class="absolute inset-0 z-10 bg-linear-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent"
+      class="absolute inset-0 z-10 bg-linear-to-t from-surface-dark via-surface-dark/40 to-transparent"
     >
     </div>
     <div class="absolute bottom-0 left-0 z-20 w-full px-6 py-12 md:px-12">
-      <div class="max-w-7xl mx-auto">
+      <div class="mx-auto max-w-7xl">
         <span
-          class="rounded-md border border-[#ecad29]/30 bg-[#ecad29]/10 px-3 py-1 text-xs font-semibold tracking-wider text-[#ecad29] uppercase"
+          class="rounded-md border border-border-gold bg-brand-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-gold"
         >
           {tour.difficulty}
         </span>
         <h1
-          class="mt-4 font-[Oswald] text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-wider text-white text-shadow-black/10 text-shadow-sm"
+          class="mt-4 font-heading text-4xl font-bold uppercase tracking-wider text-white text-shadow-black/10 text-shadow-sm sm:text-5xl md:text-6xl"
           data-animate="fade-up"
         >
           {tour.title}
@@ -43,35 +43,39 @@ const { tour } = Astro.props;
           data-animate="fade-up"
         >
           <span class="inline-flex items-center gap-1.5">
-            <Clock class="h-4 w-4 text-[#ecad29]" />
+            <Clock class="h-4 w-4 text-brand-gold" />
             {tour.duration}
           </span>
           <span class="inline-flex items-center gap-1.5">
-            <Star class="h-4 w-4 fill-[#ecad29] text-[#ecad29]" />
+            <Star class="h-4 w-4 fill-brand-gold text-brand-gold" />
             {tour.rating}
           </span>
-          <span class="text-[#ecad29] font-bold text-lg">From {tour.price}</span>
+          <span class="text-lg font-bold text-brand-gold">From {tour.price}</span>
         </div>
       </div>
     </div>
   </section>
 
-      <!-- Content Split Grid -->
-  <section class="max-w-7xl mx-auto px-6 md:px-12 py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+  <!-- Content Split Grid -->
+  <section class="mx-auto max-w-7xl px-6 py-16 md:px-12">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
       <!-- Left Column: Details & Itinerary -->
-      <div class="lg:col-span-2 space-y-12" role="region" aria-label="Tour details and itinerary">
+      <div
+        aria-label="Tour details and itinerary"
+        class="space-y-12 lg:col-span-2"
+        role="region"
+      >
         <!-- Overview -->
         <div
           class="space-y-4"
           data-animate="fade-up"
         >
           <h2
-            class="font-[Oswald] text-2xl font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2 text-shadow-black/8 text-shadow-xs"
+            class="border-b border-border-muted pb-2 font-heading text-2xl font-bold uppercase tracking-widest text-white text-shadow-black/8 text-shadow-xs"
           >
             Tour Overview
           </h2>
-          <p class="font-[Inter] text-base leading-relaxed text-white/70">
+          <p class="font-body text-base leading-relaxed text-text-secondary">
             {tour.desc}
           </p>
         </div>
@@ -82,7 +86,7 @@ const { tour } = Astro.props;
           data-animate="fade-up"
         >
           <h2
-            class="font-[Oswald] text-2xl font-bold uppercase tracking-widest text-white border-b border-white/10 pb-2 text-shadow-black/8 text-shadow-xs"
+            class="border-b border-border-muted pb-2 font-heading text-2xl font-bold uppercase tracking-widest text-white text-shadow-black/8 text-shadow-xs"
           >
             Detailed Itinerary
           </h2>
@@ -92,13 +96,15 @@ const { tour } = Astro.props;
           >
             {
               tour.itinerary.map((item) => (
-                <div class="relative ml-3 border-l border-[#ecad29]/30 pb-2 pl-6 last:pb-0">
-                  <div class="absolute top-0.5 -left-1.5 h-3 w-3 rounded-full border-2 border-[#ecad29] bg-[#1a1a1a]" />
-                  <span class="block text-xs font-bold tracking-wider text-[#ecad29] uppercase">
+                <div class="relative ml-3 border-l border-brand-gold/30 pb-2 pl-6 last:pb-0">
+                  <div class="absolute top-0.5 -left-1.5 h-3 w-3 rounded-full border-2 border-brand-gold bg-surface-dark" />
+                  <span class="block text-xs font-bold tracking-wider text-brand-gold uppercase">
                     {item.day}
                   </span>
-                  <h3 class="mt-1 font-[Outfit] text-lg font-bold text-white text-shadow-black/5 text-shadow-xs">{item.title}</h3>
-                  <p class="mt-2 font-[Inter] text-sm leading-relaxed text-white/60">{item.desc}</p>
+                  <h3 class="mt-1 font-display text-lg font-bold text-white text-shadow-black/5 text-shadow-xs">
+                    {item.title}
+                  </h3>
+                  <p class="mt-2 font-body text-sm leading-relaxed text-text-muted">{item.desc}</p>
                 </div>
               ))
             }
@@ -107,20 +113,25 @@ const { tour } = Astro.props;
       </div>
 
       <!-- Right Column: Inclusions & CTA -->
-      <aside class="space-y-8 lg:sticky lg:top-24 h-fit" aria-label="Booking information">
+      <aside
+        aria-label="Booking information"
+        class="h-fit space-y-8 lg:sticky lg:top-24"
+      >
         <!-- Inclusions & Exclusions Card -->
         <div
-          class="rounded-2xl border border-white/5 bg-white/5 p-6 md:p-8 space-y-6"
+          class="space-y-6 rounded-2xl border border-border-subtle bg-surface-card p-6 md:p-8"
           data-animate="fade-up"
         >
           <div>
-            <h3 class="font-[Oswald] text-lg font-bold uppercase tracking-widest text-white mb-4 text-shadow-black/8 text-shadow-xs">
+            <h3
+              class="mb-4 font-heading text-lg font-bold uppercase tracking-widest text-white text-shadow-black/8 text-shadow-xs"
+            >
               What's Included
             </h3>
             <ul class="space-y-3">
               {
                 tour.inclusions.map((inclusion) => (
-                  <li class="flex items-start font-[Inter] text-xs leading-relaxed text-white/70">
+                  <li class="flex items-start font-body text-xs leading-relaxed text-text-secondary">
                     <Check class="mt-0.5 mr-2 h-4 w-4 shrink-0 text-green-400" />
                     <span>{inclusion}</span>
                   </li>
@@ -129,16 +140,14 @@ const { tour } = Astro.props;
             </ul>
           </div>
 
-          <div class="border-t border-white/5 pt-6">
-            <h3
-              class="font-[Oswald] text-lg font-bold uppercase tracking-widest text-white/80 mb-4"
-            >
+          <div class="border-t border-border-subtle pt-6">
+            <h3 class="mb-4 font-heading text-lg font-bold uppercase tracking-widest text-white/80">
               Not Included
             </h3>
             <ul class="space-y-3">
               {
                 tour.exclusions.map((exclusion) => (
-                  <li class="flex items-start font-[Inter] text-xs leading-relaxed text-white/50">
+                  <li class="flex items-start font-body text-xs leading-relaxed text-text-faint">
                     <X class="mt-0.5 mr-2 h-4 w-4 shrink-0 text-red-400" />
                     <span>{exclusion}</span>
                   </li>
@@ -150,17 +159,19 @@ const { tour } = Astro.props;
 
         <!-- Book CTA Box -->
         <div
-          class="rounded-2xl bg-linear-to-br from-[#ecad29]/10 to-[#ff7a00]/10 border border-[#ecad29]/20 p-6 text-center space-y-4"
+          class="space-y-4 rounded-2xl border border-brand-gold/20 bg-linear-to-br from-brand-gold/10 to-brand-orange/10 p-6 text-center"
           data-animate="fade-up"
         >
-          <h3 class="font-[Oswald] text-xl font-bold uppercase text-white text-shadow-black/8 text-shadow-xs">
+          <h3
+            class="font-heading text-xl font-bold uppercase text-white text-shadow-black/8 text-shadow-xs"
+          >
             Ready to book this tour?
           </h3>
-          <p class="text-xs text-white/60 font-[Inter]">
+          <p class="font-body text-xs text-text-muted">
             Inquire today and our destination experts will personalize this itinerary for you.
           </p>
           <a
-            class="block w-full text-center rounded-lg bg-linear-to-r from-[#ecad29] to-[#ff7a00] px-6 py-3 text-sm font-semibold tracking-wider text-black uppercase shadow-lg shadow-[#ecad29]/10 hover:shadow-[#ecad29]/20 transition-all hover:scale-[1.02]"
+            class="block w-full rounded-lg bg-linear-to-r from-brand-gold to-brand-orange px-6 py-3 text-center text-sm font-semibold uppercase tracking-wider text-black shadow-lg shadow-brand-gold/10 transition-all hover:scale-[1.02] hover:shadow-brand-gold/20"
             href={`/contact?tour=${encodeURIComponent(tour.title)}`}
           >
             Inquire About This Tour

@@ -1,17 +1,20 @@
 ---
 import { Instagram, Twitter, Youtube } from "lucide-astro";
+import { navLinks } from "../data/navigation";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface Props {}
 ---
 
-<footer class="bg-black/40 border-t border-white/5 py-12 mt-16 backdrop-blur-md">
+<footer class="mt-16 border-t border-border-subtle bg-black/40 py-12 backdrop-blur-md">
   <div
-    class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-sm text-white/60"
+    class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 text-sm text-text-muted md:grid-cols-3 md:px-12"
   >
     <div class="flex flex-col justify-between">
       <div>
-        <h3 class="text-[#ecad29] font-[Oswald] text-2xl font-bold uppercase tracking-wider mb-3 text-shadow-black/8 text-shadow-xs">
+        <h3
+          class="mb-3 font-heading text-2xl font-bold uppercase tracking-wider text-brand-gold text-shadow-black/8 text-shadow-xs"
+        >
           Marrakech Express
         </h3>
         <p class="leading-relaxed">
@@ -22,21 +25,21 @@ export interface Props {}
       <div class="mt-6 flex items-center gap-4">
         <a
           aria-label="Instagram"
-          class="hover:text-[#ecad29] transition-colors"
+          class="transition-colors hover:text-brand-gold"
           href="#"
         >
           <Instagram class="h-6 w-6" />
         </a>
         <a
           aria-label="X (Twitter)"
-          class="hover:text-[#ecad29] transition-colors"
+          class="transition-colors hover:text-brand-gold"
           href="#"
         >
           <Twitter class="h-5 w-5" />
         </a>
         <a
           aria-label="YouTube"
-          class="hover:text-[#ecad29] transition-colors"
+          class="transition-colors hover:text-brand-gold"
           href="#"
         >
           <Youtube class="h-6 w-6" />
@@ -45,67 +48,53 @@ export interface Props {}
     </div>
 
     <div class="md:pl-12">
-      <h4 class="text-white font-[Outfit] font-semibold text-lg uppercase tracking-wide mb-4 text-shadow-black/5 text-shadow-xs">
+      <h4
+        class="mb-4 font-display text-lg font-semibold uppercase tracking-wide text-white text-shadow-black/5 text-shadow-xs"
+      >
         Quick Links
       </h4>
       <ul class="space-y-2">
-        <li>
-          <a
-            class="hover:text-[#ecad29] transition-colors"
-            href="/"
-            >Home</a
-          >
-        </li>
-        <li>
-          <a
-            class="hover:text-[#ecad29] transition-colors"
-            href="/tours"
-            >Tours</a
-          >
-        </li>
-        <li>
-          <a
-            class="hover:text-[#ecad29] transition-colors"
-            href="/destinations"
-            >Destinations</a
-          >
-        </li>
-        <li>
-          <a
-            class="hover:text-[#ecad29] transition-colors"
-            href="/blog"
-            >Blog</a
-          >
-        </li>
-        <li>
-          <a
-            class="hover:text-[#ecad29] transition-colors"
-            href="/contact"
-            >Contact</a
-          >
-        </li>
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                class="transition-colors hover:text-brand-gold"
+                href={link.href}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
 
     <div>
-      <h4 class="text-white font-[Outfit] font-semibold text-lg uppercase tracking-wide mb-4">
+      <h4 class="mb-4 font-display text-lg font-semibold uppercase tracking-wide text-white">
         Newsletter
       </h4>
-      <p class="leading-relaxed mb-4">
+      <p class="mb-4 leading-relaxed">
         Subscribe to receive curated itineraries, custom tour alerts, and photography guides
         directly.
       </p>
-      <form class="flex flex-col gap-2" aria-label="Newsletter subscription">
-        <label for="newsletter-email" class="sr-only">Email address</label>
+      <form
+        aria-label="Newsletter subscription"
+        class="flex flex-col gap-2"
+      >
+        <label
+          class="sr-only"
+          for="newsletter-email"
+          >Email address</label
+        >
         <input
-          class="w-full px-4 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white placeholder-white/40 focus:outline-hidden focus:border-[#ecad29]/40"
+          class="w-full rounded-lg border border-border-muted bg-surface-card px-4 py-2.5 text-white placeholder-text-faint focus:border-brand-gold/40 focus:outline-hidden"
           id="newsletter-email"
           placeholder="Your email address"
           required
           type="email"
         />
         <button
-          class="w-full py-2.5 rounded-lg bg-linear-to-r from-[#ecad29] to-[#ff7a00] hover:from-[#f3b73f] hover:to-[#ff8d23] text-black font-semibold uppercase tracking-wider transition-all shadow-md shadow-[#ecad29]/10"
+          class="w-full rounded-lg bg-linear-to-r from-brand-gold to-brand-orange py-2.5 font-semibold uppercase tracking-wider text-black shadow-md shadow-brand-gold/10 transition-all hover:from-brand-gold-light hover:to-brand-orange-light"
           type="submit"
         >
           Subscribe
@@ -114,7 +103,7 @@ export interface Props {}
     </div>
   </div>
   <div
-    class="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-6 border-t border-white/5 text-xs text-center text-white/30"
+    class="mx-auto mt-12 max-w-7xl border-t border-border-subtle px-6 pt-6 text-center text-xs text-text-ghost md:px-12"
   >
     &copy; {new Date().getFullYear()} Marrakech Express. All rights reserved. Made for Morocco travelers.
   </div>

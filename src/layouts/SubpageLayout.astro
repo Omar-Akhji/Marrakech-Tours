@@ -1,7 +1,7 @@
 ---
-import Layout from "./Layout.astro";
-import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Layout from "./Layout.astro";
 
 export interface Props {
   title: string;
@@ -13,29 +13,23 @@ const { title, description, image } = Astro.props;
 ---
 
 <Layout
-  bodyClass="bg-[#1a1a1a] text-white/90 font-[#Inter] min-h-screen flex flex-col justify-between"
+  bodyClass="font-body min-h-screen flex flex-col justify-between"
   description={description}
   image={image}
   title={`${title} | Marrakech Express`}
 >
   <header
-    class="fixed top-0 right-0 left-0 z-50 flex items-center justify-end border-b border-white/5 bg-[#1a1a1a]/80 px-9 py-3 font-medium backdrop-blur-md"
+    class="fixed top-0 right-0 left-0 z-50 flex items-center justify-end border-b border-border-subtle bg-surface-dark/80 px-9 py-3 font-medium backdrop-blur-md"
   >
     <Navbar />
   </header>
 
-  <main class="grow pt-20">
+  <main
+    class="grow pt-20"
+    id="main-content"
+  >
     <slot />
   </main>
 
   <Footer />
 </Layout>
-
-<style is:global>
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@500&family=Outfit:wght@400;500;600;700&display=swap");
-
-  html {
-    scroll-behavior: smooth;
-    overflow-y: auto;
-  }
-</style>

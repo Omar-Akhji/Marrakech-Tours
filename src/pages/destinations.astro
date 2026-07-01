@@ -1,74 +1,26 @@
 ---
 import SubpageLayout from "../layouts/SubpageLayout.astro";
-
-const destinations = [
-  {
-    title: "Marrakech Medina",
-    region: "Central Morocco",
-    image: "https://assets.codepen.io/3685267/timed-cards-3.jpg",
-    desc: "The historic red heart of Morocco. Lose yourself in the maze of spice-scented souks, witness the electric energy of Jemaa el-Fnaa square at dusk, and explore centuries-old Bahia Palace and secret riads.",
-    highlights: ["Jemaa el-Fnaa", "Bahia Palace", "Koutoubia Mosque"],
-  },
-  {
-    title: "Sahara Desert - Merzouga",
-    region: "Eastern Morocco",
-    image: "https://assets.codepen.io/3685267/timed-cards-6.jpg",
-    desc: "A land of massive, shifting Erg Chebbi dunes. Travel by camel caravan into the horizon, climb giant sand dunes for a breath-taking Sahara sunset, and sleep in nomadic luxury tents under a clear, unpolluted sky.",
-    highlights: ["Erg Chebbi Dunes", "Camel Caravan", "Berber Camping"],
-  },
-  {
-    title: "Chefchaouen",
-    region: "Rif Mountains",
-    image: "https://assets.codepen.io/3685267/timed-cards-2.jpg",
-    desc: "The peaceful blue-washed city of northern Morocco. Built into the foothills of the Rif Mountains, this town offers calm plazas, gorgeous photography trails, and a unique blend of Spanish-Moorish heritage.",
-    highlights: ["Blue Medina", "Rif Mountain Trails", "Outa el-Hammam"],
-  },
-  {
-    title: "Essaouira Coastline",
-    region: "Atlantic Coast",
-    image: "https://assets.codepen.io/3685267/timed-cards-5.jpg",
-    desc: "A charming, windy coastal town where 18th-century sea walls defend a whitewashed Medina. Renowned for fresh grilled seafood, dynamic kitesurfing points, art galleries, and relaxed coastal cafes.",
-    highlights: ["Sqala de la Ville", "Fishing Port", "Mogador Island"],
-  },
-  {
-    title: "High Atlas Mountains",
-    region: "Atlas Range",
-    image: "https://assets.codepen.io/3685267/timed-cards-1.jpg",
-    desc: "Morocco's towering mountain range, featuring snow-capped peaks and terraced valleys. Walk rugged trails through ancient Berber farming settlements and experience world-renowned mountain hospitality.",
-    highlights: ["Toubkal Peak", "Imlil Valley", "Berber Villages"],
-  },
-];
+import PageHero from "../components/PageHero.astro";
+import { destinations } from "../data/destinationsData";
 ---
 
 <SubpageLayout title="Morocco Destinations">
-  <!-- Hero Section -->
-  <section class="relative py-20 px-6 text-center max-w-5xl mx-auto">
-    <h1
-      class="text-5xl md:text-6xl font-[Oswald] font-bold uppercase tracking-wider text-transparent bg-clip-text bg-linear-to-r from-[#ecad29] to-[#ff7a00] text-shadow-black/10 text-shadow-sm"
-      data-animate="fade-up"
-    >
-      Explore Morocco
-    </h1>
-    <p
-      class="mt-4 text-white/70 max-w-2xl mx-auto text-base leading-relaxed font-[Outfit]"
-      data-animate="fade-up"
-    >
-      From the electric markets of Marrakech to the quiet expanse of the Sahara and the cool sea
-      breezes of the coast.
-    </p>
-  </section>
+  <PageHero
+    description="From the electric markets of Marrakech to the quiet expanse of the Sahara and the cool sea breezes of the coast."
+    title="Explore Morocco"
+  />
 
   <!-- Destinations Grid -->
-  <section class="max-w-7xl mx-auto px-6 md:px-12 pb-24">
+  <section class="mx-auto max-w-7xl px-6 pb-24 md:px-12">
     <div
-      class="grid grid-cols-1 md:grid-cols-3 gap-6"
+      class="grid grid-cols-1 gap-6 md:grid-cols-3"
       data-animate="stagger-cards"
     >
       {
         destinations.map((destination, index) => (
           <article
             class:list={[
-              `group relative flex min-h-112.5 flex-col justify-end overflow-hidden rounded-2xl border border-white/5 bg-white/5 p-6 transition-all duration-500 hover:border-[#ecad29]/30 hover:shadow-xl hover:shadow-[#ecad29]/5 md:p-8`,
+              `group relative flex min-h-112.5 flex-col justify-end overflow-hidden rounded-2xl border border-border-subtle bg-surface-card p-6 transition-all duration-500 hover:border-border-gold hover:shadow-xl hover:shadow-brand-gold/5 md:p-8`,
               { "md:col-span-2": index === 0 || index === 4 },
             ]}
           >
@@ -87,17 +39,19 @@ const destinations = [
 
             {/* Content overlay */}
             <div class="relative z-10">
-              <span class="mb-2 block text-xs font-semibold tracking-widest text-[#ecad29] uppercase">
+              <span class="mb-2 block text-xs font-semibold tracking-widest text-brand-gold uppercase">
                 {destination.region}
               </span>
-              <h3 class="mb-3 font-[Outfit] text-3xl font-bold text-white text-shadow-black/8 text-shadow-xs">{destination.title}</h3>
-              <p class="mb-6 max-w-2xl font-[Inter] text-sm leading-relaxed text-white/70">
+              <h3 class="mb-3 font-display text-3xl font-bold text-white text-shadow-black/8 text-shadow-xs">
+                {destination.title}
+              </h3>
+              <p class="mb-6 max-w-2xl font-body text-sm leading-relaxed text-text-secondary">
                 {destination.desc}
               </p>
 
               <div class="flex flex-wrap gap-2">
                 {destination.highlights.map((item) => (
-                  <span class="rounded-full border border-white/5 bg-white/10 px-3 py-1 text-[11px] font-medium text-white/80">
+                  <span class="rounded-full border border-border-subtle bg-white/10 px-3 py-1 text-[11px] font-medium text-white/80">
                     {item}
                   </span>
                 ))}

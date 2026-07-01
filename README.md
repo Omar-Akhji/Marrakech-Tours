@@ -35,12 +35,12 @@ A travel website for Marrakech tours and destinations, built with Astro, Tailwin
 
 ## 🧞 Commands
 
-| Command               | Action                                           |
-| :-------------------- | :----------------------------------------------- |
-| `bun install`         | Install dependencies                             |
-| `bun dev`             | Start dev server at `localhost:4321`             |
-| `bun build`           | Build for production to `./dist/`                |
-| `bun preview`         | Preview build locally                            |
-| `bun format`          | Format code with Prettier                        |
-| `bun lint`            | Lint with ESLint                                 |
-| `bun type-check`      | Run Astro type checking                          |
+| Command          | Action                               |
+| :--------------- | :----------------------------------- |
+| `bun install`    | Install dependencies                 |
+| `bun dev`        | Start dev server at `localhost:4321` |
+| `bun build`      | Build for production to `./dist/`    |
+| `bun preview`    | Preview build locally                |
+| `bun format`     | Format code with Prettier            |
+| `bun lint`       | Lint with ESLint                     |
+| `bun type-check` | Run Astro type checking              |

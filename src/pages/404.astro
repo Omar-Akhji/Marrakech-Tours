@@ -1,0 +1,24 @@
+---
+import SubpageLayout from "../layouts/SubpageLayout.astro";
+---
+
+<SubpageLayout title="Page Not Found">
+  <section class="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
+    <span
+      class="bg-linear-to-r from-brand-gold to-brand-orange bg-clip-text font-heading text-[8rem] font-bold leading-none text-transparent md:text-[12rem]"
+    >
+      404
+    </span>
+    <h1 class="mt-4 font-display text-3xl font-bold text-white md:text-4xl">Lost in the Medina?</h1>
+    <p class="mx-auto mt-4 max-w-md text-base leading-relaxed text-text-muted">
+      It looks like this path leads nowhere. Even the best explorers take a wrong turn in the narrow
+      alleyways of Marrakech.
+    </p>
+    <a
+      class="mt-8 inline-block rounded-lg bg-linear-to-r from-brand-gold to-brand-orange px-8 py-3 font-semibold uppercase tracking-wider text-black shadow-lg shadow-brand-gold/10 transition-all hover:scale-[1.02] hover:shadow-brand-gold/20"
+      href="/"
+    >
+      Return Home
+    </a>
+  </section>
+</SubpageLayout>

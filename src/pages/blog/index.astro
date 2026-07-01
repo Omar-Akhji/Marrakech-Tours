@@ -1,82 +1,24 @@
 ---
 import SubpageLayout from "../../layouts/SubpageLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { posts } from "../../data/blogData";
 import { Calendar, Clock, ArrowRight } from "lucide-astro";
-
-const posts = [
-  {
-    slug: "souk-survival-tips",
-    title: "10 Souk Survival Tips for First-Time Marrakech Travelers",
-    date: "June 25, 2026",
-    author: "Omar Bennani",
-    readTime: "5 min read",
-    category: "Guides",
-    image: "https://assets.codepen.io/3685267/timed-cards-3.jpg",
-    excerpt:
-      "Marrakech's historic souks are a dream for shoppers, but they can be overwhelming. Learn how to navigate the narrow alleys, haggle like a local, and identify real spices.",
-  },
-  {
-    slug: "sahara-desert-camping",
-    title: "Sleeping in the Sahara: What to Expect in a Desert Camp",
-    date: "June 18, 2026",
-    author: "Yasmine Mansouri",
-    readTime: "7 min read",
-    category: "Adventure",
-    image: "https://assets.codepen.io/3685267/timed-cards-6.jpg",
-    excerpt:
-      "A trek into the dunes of Erg Chebbi is an essential Moroccan experience. Here is everything you need to know about luxury camps, desert weather, camel riding, and starry nights.",
-  },
-  {
-    slug: "chefchaouen-photography-guide",
-    title: "Exploring the Blue Pearl: A Chefchaouen Photography Guide",
-    date: "June 12, 2026",
-    author: "Karim Alaoui",
-    readTime: "4 min read",
-    category: "Photography",
-    image: "https://assets.codepen.io/3685267/timed-cards-2.jpg",
-    excerpt:
-      "Chefchaouen is a photographer's paradise. We share the exact coordinates of the most iconic blue staircases, best sunrise views, and tips for photographing locals respectfully.",
-  },
-  {
-    slug: "moroccan-mint-tea-etiquette",
-    title: "Moroccan Mint Tea Etiquette: More Than Just a Drink",
-    date: "June 05, 2026",
-    author: "Fatima Zahra",
-    readTime: "3 min read",
-    category: "Culture",
-    image: "https://assets.codepen.io/3685267/timed-cards-1.jpg",
-    excerpt:
-      "Known as 'Berber Whiskey', Moroccan mint tea is a symbol of hospitality. Discover the history behind the brew, the pouring technique, and how to accept tea gracefully.",
-  },
-];
 ---
 
 <SubpageLayout title="Travel Blog">
-  <!-- Hero Section -->
-  <section class="relative py-20 px-6 text-center max-w-5xl mx-auto">
-    <h1
-      class="text-5xl md:text-6xl font-[Oswald] font-bold uppercase tracking-wider text-transparent bg-clip-text bg-linear-to-r from-[#ecad29] to-[#ff7a00] text-shadow-black/10 text-shadow-sm"
-      data-animate="fade-up"
-    >
-      Travel Stories & Guides
-    </h1>
-    <p
-      class="mt-4 text-white/70 max-w-2xl mx-auto text-base leading-relaxed font-[Outfit]"
-      data-animate="fade-up"
-    >
-      Insider tips, destination highlights, and cultural chronicles straight from the riads and
-      dunes of Morocco.
-    </p>
-  </section>
+  <PageHero
+    description="Insider tips, destination highlights, and cultural chronicles straight from the riads and dunes of Morocco."
+    title="Travel Stories & Guides"
+  />
 
   <!-- Blog Bento Grid -->
-  <section class="max-w-7xl mx-auto px-6 md:px-12 pb-24">
+  <section class="mx-auto max-w-7xl px-6 pb-24 md:px-12">
     <div
-      class="grid grid-cols-1 md:grid-cols-12 gap-8"
+      class="grid grid-cols-1 gap-8 md:grid-cols-12"
       data-animate="stagger-cards"
     >
       {
         posts.map((post, index) => {
-          // First post is featured (spans 12 columns), second/third span 6, fourth spans 12
           const colSpanClass =
             index === 0 ? "md:col-span-12 lg:flex-row" : "md:col-span-6 flex-col";
           return (
@@ -84,7 +26,7 @@ const posts = [
               class:list={[
                 "group flex",
                 colSpanClass,
-                "overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-[#ecad29]/30",
+                "overflow-hidden rounded-2xl border border-border-subtle bg-surface-card transition-all duration-300 hover:-translate-y-1 hover:border-border-gold",
               ]}
             >
               {/* Image Area */}
@@ -104,7 +46,7 @@ const posts = [
                   />
                 </div>
                 <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-                <span class="absolute top-4 left-4 rounded-xs bg-[#ecad29] px-2.5 py-1 text-[10px] font-semibold tracking-wider text-black uppercase shadow-md">
+                <span class="absolute top-4 left-4 rounded-xs bg-brand-gold px-2.5 py-1 text-[10px] font-semibold tracking-wider text-black uppercase shadow-md">
                   {post.category}
                 </span>
               </div>
@@ -117,7 +59,7 @@ const posts = [
                 ]}
               >
                 <div>
-                  <div class="mb-3 flex items-center gap-4 text-xs text-white/40">
+                  <div class="mb-3 flex items-center gap-4 text-xs text-text-faint">
                     <span class="flex items-center gap-1.5">
                       <Calendar class="h-3.5 w-3.5" />
                       {post.date}
@@ -128,18 +70,18 @@ const posts = [
                       {post.readTime}
                     </span>
                   </div>
-                   <h2 class="mb-3 font-[Outfit] text-2xl leading-tight font-bold text-white transition-colors group-hover:text-[#ecad29] text-shadow-black/8 text-shadow-xs">
+                  <h2 class="mb-3 font-display text-2xl leading-tight font-bold text-white transition-colors text-shadow-black/8 text-shadow-xs group-hover:text-brand-gold">
                     {post.title}
                   </h2>
-                  <p class="mb-6 font-[Inter] text-sm leading-relaxed text-white/60">
+                  <p class="mb-6 font-body text-sm leading-relaxed text-text-muted">
                     {post.excerpt}
                   </p>
                 </div>
 
-                <div class="flex items-center justify-between border-t border-white/5 pt-4">
-                  <span class="text-xs text-white/50">By {post.author}</span>
+                <div class="flex items-center justify-between border-t border-border-subtle pt-4">
+                  <span class="text-xs text-text-faint">By {post.author}</span>
                   <a
-                    class="flex items-center gap-1.5 text-xs font-semibold tracking-wider text-[#ecad29] uppercase transition-colors hover:text-white"
+                    class="flex items-center gap-1.5 text-xs font-semibold tracking-wider text-brand-gold uppercase transition-colors hover:text-white"
                     href={`/blog/${post.slug}`}
                   >
                     Read Post

@@ -1,0 +1,27 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<section class="relative mx-auto max-w-5xl px-6 py-20 text-center">
+  <h1
+    class="bg-linear-to-r from-brand-gold to-brand-orange bg-clip-text font-heading text-5xl font-bold uppercase tracking-wider text-transparent text-shadow-black/10 text-shadow-sm md:text-6xl"
+    data-animate="fade-up"
+  >
+    {title}
+  </h1>
+  {
+    description && (
+      <p
+        class="mx-auto mt-4 max-w-2xl font-display text-base leading-relaxed text-text-secondary"
+        data-animate="fade-up"
+      >
+        {description}
+      </p>
+    )
+  }
+</section>

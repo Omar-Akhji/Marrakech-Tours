@@ -16,37 +16,37 @@ const { id, place = "", title = "", title2 = "", description = "" } = Astro.prop
 >
   <div class="place-box h-11.5 overflow-hidden">
     <div
-      class="text relative pt-4 text-sm sm:text-base md:text-lg lg:text-xl before:absolute before:top-0 before:left-0 before:h-1 before:w-7.5 before:rounded-full before:bg-white before:content-['']"
+      class="text relative pt-4 text-sm before:absolute before:top-0 before:left-0 before:h-1 before:w-7.5 before:rounded-full before:bg-white before:content-[''] sm:text-base md:text-lg lg:text-xl"
     >
       {place}
     </div>
   </div>
   <div
-    class="title-box-1 mt-0.5 h-[1.15em] overflow-hidden text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-none"
+    class="title-box-1 mt-0.5 h-[1.15em] overflow-hidden text-3xl font-semibold leading-none sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
   >
     <div
-      class="title-1 font-[Oswald] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-none"
+      class="title-1 font-heading text-3xl font-semibold leading-none sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
     >
       {title}
     </div>
   </div>
   <div
-    class="title-box-2 mt-0.5 h-[1.15em] overflow-hidden text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-none"
+    class="title-box-2 mt-0.5 h-[1.15em] overflow-hidden text-3xl font-semibold leading-none sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
   >
     <div
-      class="title-2 font-[Oswald] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-none"
+      class="title-2 font-heading text-3xl font-semibold leading-none sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
     >
       {title2}
     </div>
   </div>
   <div
-    class="desc font-['Montserrat'] mt-4 w-full text-xs sm:text-sm md:text-base text-white/70 leading-relaxed"
+    class="desc mt-4 w-full font-serif text-xs leading-relaxed text-text-secondary sm:text-sm md:text-base"
   >
     {description}
   </div>
   <div class="cta mt-6 flex w-full items-center">
     <button
-      class="discover h-9 cursor-pointer rounded-full border border-white bg-transparent px-6 py-1 text-xs text-white uppercase"
+      class="discover h-9 cursor-pointer rounded-full border border-white bg-transparent px-6 py-1 text-xs uppercase text-white"
       >Discover Location</button
     >
   </div>
