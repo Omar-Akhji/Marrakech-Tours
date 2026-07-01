@@ -1,0 +1,234 @@
+---
+import { Star } from "lucide-astro";
+
+const row1 = [
+  {
+    name: "Sophia Jenkins",
+    location: "London, UK",
+    text: "The sunset camel ride in Agafay Desert was absolutely magical! Highly recommend the overnight camp.",
+    rating: 5,
+    avatar: "SJ",
+  },
+  {
+    name: "Aleksei Ivanov",
+    location: "Moscow, Russia",
+    text: "Marrakech Express made our trip seamless. The private tour of Bahia Palace was incredibly detailed.",
+    rating: 5,
+    avatar: "AI",
+  },
+  {
+    name: "Yuki Tanaka",
+    location: "Tokyo, Japan",
+    text: "Incredible experience hiking the Atlas Mountains. The Berber hospitality was heartwarming and food was excellent.",
+    rating: 5,
+    avatar: "YT",
+  },
+  {
+    name: "Chloe Dupont",
+    location: "Paris, France",
+    text: "Loved the hot air balloon flight at sunrise. Floating over the Marrakech palm groves was unforgettable.",
+    rating: 5,
+    avatar: "CD",
+  },
+  {
+    name: "David Miller",
+    location: "New York, USA",
+    text: "Expertly curated tour of the souks. We found the best spices, rugs, and leather without any high-pressure sales.",
+    rating: 5,
+    avatar: "DM",
+  },
+];
+
+const row2 = [
+  {
+    name: "Fatima Zahra",
+    location: "Casablanca, Morocco",
+    text: "A truly authentic experience. The guided tour of the Medina was deeply informative and culturally rich.",
+    rating: 5,
+    avatar: "FZ",
+  },
+  {
+    name: "Liam O'Connor",
+    location: "Dublin, Ireland",
+    text: "Stunning photography tour! Our guide knew all the hidden Instagram spots and best lighting times.",
+    rating: 5,
+    avatar: "LO",
+  },
+  {
+    name: "Amara Diop",
+    location: "Dakar, Senegal",
+    text: "Our family loved the day trip to Ouzoud Waterfalls. The kids loved seeing the wild monkeys!",
+    rating: 5,
+    avatar: "AD",
+  },
+  {
+    name: "Marcus Weber",
+    location: "Berlin, Germany",
+    text: "Seamless organization, luxury transport, and a highly professional guide. Exceeded all our expectations.",
+    rating: 5,
+    avatar: "MW",
+  },
+  {
+    name: "Elena Rossi",
+    location: "Milan, Italy",
+    text: "The cooking class in Marrakech was the highlight of our trip. We learned how to make authentic tagines!",
+    rating: 5,
+    avatar: "ER",
+  },
+];
+---
+
+<section class="relative mx-auto max-w-7xl px-6 py-32 md:px-12 md:py-40">
+  <!-- Title Section -->
+  <div
+    class="mb-16 text-center"
+    data-animate="fade-up"
+  >
+    <span
+      class="inline-block rounded-md border border-brand-gold/20 bg-brand-gold/10 px-3 py-1 text-xs font-semibold tracking-wider text-brand-gold uppercase"
+    >
+      Guest Reviews
+    </span>
+    <h2
+      class="mt-4 font-heading text-4xl font-bold tracking-tight text-white uppercase sm:text-5xl"
+    >
+      Loved by Travelers
+    </h2>
+    <p class="mx-auto mt-4 max-w-xl font-body text-base text-text-muted">
+      Discover stories of unforgettable journeys, cultural immersions, and breathtaking adventures
+      from our guests.
+    </p>
+  </div>
+
+  <!-- Boxed Grid Testimonials Container -->
+  <div
+    class="relative overflow-hidden rounded-2xl border border-border-muted bg-surface-dark/40 shadow-2xl backdrop-blur-xs"
+    data-animate="fade-up"
+  >
+    <!-- Left/Right Fading Overlays -->
+    <div
+      class="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-16 bg-linear-to-r from-surface-dark via-surface-dark/80 to-transparent md:w-24"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute top-0 bottom-0 right-0 z-10 w-16 bg-linear-to-l from-surface-dark via-surface-dark/80 to-transparent md:w-24"
+    >
+    </div>
+
+    <!-- Row 1: Left to Right Marquee -->
+    <div class="relative flex pt-6 pb-2 overflow-hidden select-none group">
+      <div
+        class="marquee-track flex gap-4 shrink-0 min-w-full group-hover:[animation-play-state:paused]"
+      >
+        {
+          [...row1, ...row1].map((review) => (
+            <div class="flex w-[320px] shrink-0 flex-col justify-between rounded-xl border border-border-subtle bg-surface-card p-6 transition-all duration-300 hover:border-brand-gold/30 hover:bg-surface-card-hover hover:shadow-[0_0_20px_rgba(236,173,41,0.05)] md:w-95">
+              <div>
+                <div class="mb-3 flex items-center justify-between">
+                  <div class="flex items-center gap-1">
+                    {Array.from({ length: review.rating }, () => (
+                      <Star class="h-3.5 w-3.5 fill-brand-gold text-brand-gold" />
+                    ))}
+                  </div>
+                  <span class="rounded-xs bg-brand-gold/10 px-2 py-0.5 text-[9px] font-bold tracking-wider text-brand-gold uppercase">
+                    Verified Guest
+                  </span>
+                </div>
+                <p class="font-body text-sm leading-relaxed text-text-muted italic">
+                  "{review.text}"
+                </p>
+              </div>
+              <div class="mt-6 flex items-center gap-3 border-t border-border-subtle pt-4">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-brand-gold to-brand-orange font-heading text-sm font-bold text-black shadow-md">
+                  {review.avatar}
+                </div>
+                <div>
+                  <h4 class="font-display text-sm font-bold text-white">{review.name}</h4>
+                  <p class="font-body text-xs text-text-faint">{review.location}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Row 2: Right to Left Marquee -->
+    <div class="relative flex pt-2 pb-6 overflow-hidden select-none group">
+      <div
+        class="marquee-track-reverse flex gap-4 shrink-0 min-w-full group-hover:[animation-play-state:paused]"
+      >
+        {
+          [...row2, ...row2].map((review) => (
+            <div class="flex w-[320px] shrink-0 flex-col justify-between rounded-xl border border-border-subtle bg-surface-card p-6 transition-all duration-300 hover:border-brand-gold/30 hover:bg-surface-card-hover hover:shadow-[0_0_20px_rgba(236,173,41,0.05)] md:w-95">
+              <div>
+                <div class="mb-3 flex items-center justify-between">
+                  <div class="flex items-center gap-1">
+                    {Array.from({ length: review.rating }, () => (
+                      <Star class="h-3.5 w-3.5 fill-brand-gold text-brand-gold" />
+                    ))}
+                  </div>
+                  <span class="rounded-xs bg-brand-gold/10 px-2 py-0.5 text-[9px] font-bold tracking-wider text-brand-gold uppercase">
+                    Verified Guest
+                  </span>
+                </div>
+                <p class="font-body text-sm leading-relaxed text-text-muted italic">
+                  "{review.text}"
+                </p>
+              </div>
+              <div class="mt-6 flex items-center gap-3 border-t border-border-subtle pt-4">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-brand-orange to-brand-gold font-heading text-sm font-bold text-black shadow-md">
+                  {review.avatar}
+                </div>
+                <div>
+                  <h4 class="font-display text-sm font-bold text-white">{review.name}</h4>
+                  <p class="font-body text-xs text-text-faint">{review.location}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Infinite Marquee Track Animations */
+  .marquee-track {
+    animation: scroll-left 45s linear infinite;
+  }
+
+  .marquee-track-reverse {
+    animation: scroll-right 45s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% - 8px));
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(calc(-50% - 8px));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Support reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .marquee-track-reverse {
+      animation: none;
+      overflow-x: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>

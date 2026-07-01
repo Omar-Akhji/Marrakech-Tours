@@ -142,25 +142,25 @@ const relatedPosts = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
     </h2>
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
       {
-        relatedPosts.map((relPost) => (
+        relatedPosts.map((relatedPost) => (
           <a
             class="group relative block overflow-hidden rounded-xl border border-border-subtle bg-white/3 transition-all duration-300 hover:border-brand-gold/20 hover:bg-surface-card-hover"
-            href={`/blog/${relPost.slug}`}
+            href={`/blog/${relatedPost.slug}`}
           >
             <div class="relative h-48 overflow-hidden">
               <img
-                alt={relPost.title}
+                alt={relatedPost.title}
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                src={relPost.image}
+                src={relatedPost.image}
               />
               <div class="absolute inset-0 bg-linear-to-t from-surface-dark via-surface-dark/40 to-transparent" />
               <span class="absolute top-3 left-3 rounded-xs bg-brand-gold px-2 py-0.5 text-[9px] font-bold tracking-widest text-black uppercase">
-                {relPost.category}
+                {relatedPost.category}
               </span>
             </div>
             <div class="p-5">
               <h3 class="font-display text-lg leading-snug font-bold text-white transition-colors text-shadow-black/8 text-shadow-xs group-hover:text-brand-gold">
-                {relPost.title}
+                {relatedPost.title}
               </h3>
               <span class="mt-3 inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-brand-gold uppercase">
                 Read Post
