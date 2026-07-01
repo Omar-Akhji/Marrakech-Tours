@@ -1,4 +1,5 @@
 ---
+import { Home, Compass, MapPin, BookOpen, Mail } from "lucide-astro";
 import { navLinks } from "../data/navigation";
 
 export interface Props {
@@ -7,11 +8,19 @@ export interface Props {
 
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = Astro.props.currentPath ?? pathname.replace(/\/$/, "");
+
+const iconMap = {
+  "/": Home,
+  "/tours": Compass,
+  "/destinations": MapPin,
+  "/blog": BookOpen,
+  "/contact": Mail,
+};
 ---
 
 <nav
   aria-label="Primary Navigation"
-  class="relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-border-muted bg-surface-card p-2 shadow-sm backdrop-blur-md"
+  class="relative inline-flex items-center gap-2.5 sm:gap-5 md:gap-2 xl:gap-3 overflow-hidden rounded-full border border-border-muted bg-surface-card p-2 shadow-sm backdrop-blur-md"
 >
   <!-- Sliding Indicator -->
   <div
@@ -19,21 +28,26 @@ const currentPath = Astro.props.currentPath ?? pathname.replace(/\/$/, "");
     style="pointer-events: none;"
   >
   </div>
-  <ul class="nav-links m-0 inline-flex list-none items-center gap-3 p-0">
+  <ul
+    class="nav-links m-0 inline-flex list-none items-center gap-2.5 sm:gap-5 md:gap-2 xl:gap-3 p-0"
+  >
     {
       navLinks.map((link) => {
         const isActive = currentPath === (link.href === "/" ? "" : link.href);
+        const IconComponent = iconMap[link.href as keyof typeof iconMap] || Compass;
         return (
           <li>
             <a
               aria-current={isActive ? "page" : undefined}
               class:list={[
-                "nav-item relative z-10 block rounded-full px-6 py-2.5 text-sm font-display font-semibold uppercase no-underline transition-colors duration-200",
+                "nav-item relative z-10 block rounded-full p-3 sm:p-4 md:px-4 md:py-2.5 xl:px-6 xl:py-2.5 text-sm font-display font-semibold uppercase no-underline transition-colors duration-200",
                 { "text-black": isActive, "text-text-muted": !isActive },
               ]}
               href={link.href}
+              title={link.label}
             >
-              {link.label}
+              <IconComponent class="h-5 w-5 md:hidden" />
+              <span class="hidden md:inline">{link.label}</span>
             </a>
           </li>
         );

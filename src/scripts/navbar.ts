@@ -22,14 +22,20 @@ function setupNavIndicator() {
     moveTo(activeLink, true);
   }
 
+  window.addEventListener("resize", () => {
+    if (activeLink instanceof HTMLElement) {
+      moveTo(activeLink, true);
+    }
+  });
+
   for (const item of items) {
     if (!(item instanceof HTMLElement)) continue;
     item.addEventListener("mouseenter", () => {
       for (const itemElement of items) {
         itemElement.classList.remove("text-black");
-        itemElement.classList.add("text-white/60");
+        itemElement.classList.add("text-text-muted");
       }
-      item.classList.remove("text-white/60");
+      item.classList.remove("text-text-muted");
       item.classList.add("text-black");
       moveTo(item);
     });
@@ -38,10 +44,10 @@ function setupNavIndicator() {
   nav.addEventListener("mouseleave", () => {
     for (const item of items) {
       item.classList.remove("text-black");
-      item.classList.add("text-white/60");
+      item.classList.add("text-text-muted");
     }
     if (activeLink instanceof HTMLElement) {
-      activeLink.classList.remove("text-white/60");
+      activeLink.classList.remove("text-text-muted");
       activeLink.classList.add("text-black");
       moveTo(activeLink);
     } else {
